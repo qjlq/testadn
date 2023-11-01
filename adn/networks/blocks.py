@@ -43,10 +43,15 @@ norm_dict = dict(
 
 activ_dict = dict(
       none = lambda: lambda x: x,
-      relu = lambda: nn.ReLU(inplace=True),
-     lrelu = lambda: nn.LeakyReLU(0.2, inplace=True),
-     prelu = lambda: nn.PReLU(),
-      selu = lambda: nn.SELU(inplace=True),
+    #   relu = lambda: nn.ReLU(inplace=True),
+    #  lrelu = lambda: nn.LeakyReLU(0.2, inplace=True),
+    #  prelu = lambda: nn.PReLU(),
+    #   selu = lambda: nn.SELU(inplace=True),
+    #edit
+      relu = lambda: nn.ReLU(inplace=False),
+      lrelu = lambda: nn.LeakyReLU(0.2, inplace=False),
+      prelu = lambda: nn.PReLU(),
+      selu = lambda: nn.SELU(inplace=False,
       tanh = lambda: nn.Tanh())
 
 
@@ -72,10 +77,17 @@ class ResidualBlock(nn.Module):
         super(ResidualBlock, self).__init__()
 
         block = []
-        block += [ConvolutionBlock(
+        # block += [ConvolutionBlock(
+        #     in_channels=channels, out_channels=channels, kernel_size=3,
+        #     stride=1, padding=1, norm=norm, activ=activ, pad=pad)]
+        # block += [ConvolutionBlock(
+        #     in_channels=channels, out_channels=channels, kernel_size=3,
+        #     stride=1, padding=1, norm=norm, activ='none', pad=pad)]
+        #change inplace
+        block = block + [ConvolutionBlock(
             in_channels=channels, out_channels=channels, kernel_size=3,
             stride=1, padding=1, norm=norm, activ=activ, pad=pad)]
-        block += [ConvolutionBlock(
+        block = block + [ConvolutionBlock(
             in_channels=channels, out_channels=channels, kernel_size=3,
             stride=1, padding=1, norm=norm, activ='none', pad=pad)]
         self.model = nn.Sequential(*block)
