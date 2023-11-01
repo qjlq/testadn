@@ -58,6 +58,7 @@ class Tester(object):
             checkpoint, epoch = get_last_checkpoint(self.run_dir)
         else:
             epoch = opts.last_epoch
+            #here import the train model
             checkpoint = path.join(self.run_dir, "net_{}.pt".format(epoch))
         if not path.isfile(checkpoint): raise IOError("Checkpoint not found!")
         self.epoch = epoch
