@@ -52,7 +52,7 @@ activ_dict = dict(
       lrelu = lambda: nn.LeakyReLU(0.2, inplace=False),
       prelu = lambda: nn.PReLU(),
       selu = lambda: nn.SELU(inplace=False,
-      tanh = lambda: nn.Tanh())
+      tanh = lambda: nn.Tanh()))
 
 
 class ConvolutionBlock(nn.Module):
