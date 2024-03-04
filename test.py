@@ -49,7 +49,7 @@ class ADNTester(Tester):
             ("after", (pred_lh, img_high))], self.model.name
 
     # def get_visuals(self, n=8):
-    def get_visuals(self, n=2):
+    def get_visuals(self, n=8):
         lookup = [
             ("lh", "pred_lh")]
         # lookup = [
